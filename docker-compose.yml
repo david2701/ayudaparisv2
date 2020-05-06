@@ -17,8 +17,8 @@ services:
         volumes:
             - .:/code
         ports:
-            - 8000:8000
+            - 80:80
         env_file: conf/.env
-        command: ['./docker/wait-for-db.sh', 'db', './manage.py', 'runserver', '0.0.0.0:8000']
+        command: ['./docker/wait-for-db.sh', 'db', './manage.py', 'runserver', '0.0.0.0:80']
         depends_on:
             - db
