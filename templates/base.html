@@ -1,0 +1,68 @@
+{% load leaflet_tags %} {% load static %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>{% block title %} AIDLinks {% endblock %}</title>
+
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="{% block fb-url %} {{ request.build_absolute_uri }} {% endblock %}" />
+		<meta property="og:title" content="{% block fb-title %} AIDLinks {% endblock %}" />
+		<meta property="og:description" content="{% block fb-description %} AIDLinks {% endblock %}" />
+		<meta property="og:image" content="{% block fb-image %} {% static "favicon-32x32.png" %} {% endblock %}">
+
+		<!-- Twitter -->
+		<meta name="twitter:card" content="summary_large_image" />
+
+		<link rel="icon" href="{% static "favicon-32x32.png" %}" type="image/svg" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-switch@2.0.0/dist/css/bulma-switch.min.css" />
+		<link rel="stylesheet" href="../static/css/global.css" />
+
+		<script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-162827339-1"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+			gtag('js', new Date());
+			gtag('config', 'UA-162827339-1');
+		</script>
+
+		<script
+			src="https://cdn.jsdelivr.net/npm/@vizuaalog/bulmajs@0.10.3/dist/file.js"
+			integrity="sha256-9BDCQ1iKLp8eEXxQD6U8StZ4V2On9KFEHDeHeXLZ/aE="
+			crossorigin="anonymous"
+		></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/@vizuaalog/bulmajs@0.10.3/dist/modal.js"
+			integrity="sha256-HDcVnTQ5+DdyigrR4Xge4rxqguBi19XI7vNDhTDr+hs="
+			crossorigin="anonymous"
+		></script>
+		<script src="https://cdn.jsdelivr.net/combine/npm/moment@2.24.0/min/moment.min.js,npm/moment@2.24.0/locale/es.js"></script>
+		{% leaflet_js plugins="ALL" %} {% leaflet_css plugins="ALL" %}
+	</head>
+
+	<body class="Site">
+		<div class="media center logo">
+			<div>
+				<figure>
+					<img src="../static/img/img_logo.svg" alt="" />
+				</figure>
+			</div>
+		</div>
+
+		<main class="Site-content animated fadeIn">
+			<section class="section center">
+				<div class="container">
+					{% block bread %} {% endblock bread %} {% block content %} {% endblock content %}
+				</div>
+			</section>
+		</main>
+		{% include 'footer.html' %}
+	</body>
+</html>
